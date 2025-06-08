@@ -46,3 +46,6 @@ This is a sleek single-file CSS-only theme for CTFd I originally made for the EC
 ![challenges](demo/mobile_challenges.png)  
 ![expanded navbar](demo/mobile_challenge_solve.png)  
 ![challenge solve](demo/mobile_navbar.png)  
+
+## Licensing
+This theme has been released under the [MIT license](LICENSE). You are however allowed to use and distribute the CSS file without including the LICENSE file as long as you don't change/remove the CSS comment that links back to this GitHub page.
