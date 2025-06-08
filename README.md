@@ -1,5 +1,7 @@
 # Lingonberry
-This is a sleek CSS-only theme I originally made for the ECSC Estonian finals.
+This is a sleek single-file CSS-only theme for CTFd I originally made for the ECSC Estonian finals. Feel free to modify and use it for your own CTFs.
+
+![Demo video](demo/demo.webp)
 
 ## Features
 - Sleek lilac-pink color scheme and design
@@ -33,3 +35,14 @@ This is a sleek CSS-only theme I originally made for the ECSC Estonian finals.
   - Mobile support (at least a bit)
 
 ## Screenshots
+### Desktop
+![login](demo/login.png)  
+![scoreboard](demo/scoreboard.png)  
+![challenges](demo/challenges.png)  
+![challenge open](demo/challenge_open.png)  
+![challenge solve](demo/challenge_solve.png)  
+![challenge solves](demo/challenge_solves.png)  
+### Mobile
+![challenges](demo/mobile_challenges.png)  
+![expanded navbar](demo/mobile_challenge_solve.png)  
+![challenge solve](demo/mobile_navbar.png)  
