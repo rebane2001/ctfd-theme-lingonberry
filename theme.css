@@ -1,0 +1,803 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/*
+ * CTFd Lingonberry theme
+ * https://github.com/rebane2001/ctfd-theme-lingonberry/
+ */
+
+:root {
+  --bs-dark: #F7C2F3;
+  --bs-dark-rgb: #F7C2F3;
+  --bs-body-bg: #F7C2F3;
+  --bs-link-color: #e98cd9;
+  --bs-link-hover-color: #f5d1ef;
+  --bs-code-color: #ff88c9;
+  --bs-primary-rgb: 57, 37, 61;
+  --primary-font: "Inter", system-ui, sans-serif;
+  --yum: #39253D;
+}
+
+/* too lazy to do color themes :c */
+:root, [data-bs-theme=light] {
+  color-scheme: dark;
+  --bs-body-color: #dee2e6;
+    --bs-emphasis-color: #fff;
+    --bs-emphasis-color-rgb: 255, 255, 255;
+    --bs-secondary-color: rgba(222, 226, 230, .75);
+    --bs-secondary-color-rgb: 222, 226, 230;
+    --bs-secondary-bg: #343a40;
+    --bs-secondary-bg-rgb: 52, 58, 64;
+    --bs-tertiary-color: rgba(222, 226, 230, .5);
+    --bs-tertiary-color-rgb: 222, 226, 230;
+    --bs-tertiary-bg: #2b3035;
+
+    --bs-highlight-color: #dee2e6;
+    --bs-highlight-bg: #664d03;
+    --bs-border-color: #495057;
+    --bs-border-color-translucent: rgba(255, 255, 255, .15);
+    --bs-form-valid-color: #75b798;
+    --bs-form-valid-border-color: #75b798;
+    --bs-form-invalid-color: #ea868f;
+    --bs-form-invalid-border-color: #ea868f
+}
+
+.table {
+  --bs-table-bg: #0000;
+  --bs-table-border-color: #0000;
+}
+
+.nav-pills {
+  --bs-nav-pills-link-active-bg: #9F0399;
+}
+
+::selection {
+  background: #9F0399;
+  color: #FFF;
+}
+
+html, body, .container {
+    font-family: var(--primary-font);
+}
+
+@media (width > 991px) {
+  body>div.modal-backdrop.fade.show {
+    display: none;
+  }
+}
+
+.table {
+  border-radius: 8px;
+  outline: 1px solid #8883;
+  margin: 9px 0;
+}
+
+body:has(>nav:hover) .bs-tooltip-auto { display: none; }
+
+    @media (width < 576px) {
+      .navbar-toggler {
+        width: 100%;
+        padding: 0;
+        margin: 0 8px 8px;
+      }
+      .navbar-brand {
+        margin: auto;
+      }
+
+    }
+
+#score-graph {
+  background: #FFF;
+  border-radius: 12px 12px 0 0;
+  /*box-shadow: 0 0 16px 0 #0004;*/
+  box-shadow: 0 0 24px 0 #0002;
+  position: static!important;
+  padding-top: 14px;
+}
+div[x-data="TeamGraphs"] #score-graph {
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+body>footer { display: none; }
+
+body>nav>.container>.navbar-brand:hover {
+          &::before {
+            content: "Powered by CTFd / Design by Lyra Rebane";
+            position: absolute;
+            pointer-events: none;
+            translate: -39px -35px;
+            font-size: 16px;
+            border-radius: 12px;
+            color: #FFF;
+            text-shadow: 1px 1px 4px #39253D44;
+            transition: translate 2s cubic-bezier(0,1,0,1);
+            @starting-style {
+              translate: -39px -45px;
+            }
+          }
+}
+
+nav.navbar {
+  user-select: none;
+  background: var(--yum)!important;
+  width: fit-content;
+  margin: auto;
+  top: unset;
+  bottom: 16px;
+  padding: 0 32px;
+  border-radius: 12px;
+  border: 1px solid #8883;
+  box-shadow: 0 0 16px 0 #0004;
+  li.nav-item {
+    &:has(.fa-language) button::after { display: none }
+    &:has(.fa-moon) { display: none; }
+    form[x-data="LanguageForm"] {
+      ul {
+        translate: 0 calc(-100% - 48px);
+        @media (width < 576px) {
+          translate: 0 calc(100% - 88vh);
+        }
+        background: var(--yum);
+        span.dropdown-item.bg-primary {
+          background: #9f0399!important;
+        }
+      }
+    }
+
+    @media (min-width: 576px) {
+    &:has(i.fas) {
+      a:has(span:hover)  {
+        span[data-bs-toggle="tooltip"] {
+          &::before {
+            content: attr(aria-label);
+            position: absolute;
+            display: flex;
+            align-items: center;
+            pointer-events: none;
+            height: 32px;
+            padding: 8px;
+            background: var(--yum);
+            box-shadow: 0 0 16px 0 #0004;
+            translate: calc(-50% + 8px) -46px;
+            border-radius: 12px;
+            color: #FFF;
+            transition: translate 2s cubic-bezier(0,1,0,1);
+            @starting-style {
+              translate: calc(-50% + 8px) -40px;
+            }
+          }
+        }
+      }
+      .d-sm-inline {
+        font-size: 0;
+        i {
+          font-size: 16px;
+        }
+      }
+    }
+   }
+  }
+}
+
+main {
+  padding-top: 0;
+  font-family: var(--primary-font);
+  background: #f7c2f3;
+  & > div.container {
+    container-type: inline-size;
+  }
+  .jumbotron {
+    padding: 0;
+    margin: 32px 0;
+    h1 {
+      font-size: 32px;
+      color: var(--yum);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+  }
+}
+
+main>.jumbotron:has(#team-id), main>.jumbotron:has(>.container>h1):has(>.container>div>h2.text-center>small) {
+  h2 {
+    color: var(--yum);
+  }
+}
+
+main>div.container:not(:has(>div[x-data="ChallengeBoard"])) {
+  &>.row>div {
+    border-radius: 12px;
+    background: var(--yum);
+    border: 1px solid #8883;
+    box-shadow: 0 0 16px 0 #0004;
+    padding: 32px;
+  }
+}
+
+main:not(:has(>.jumbotron)) > .container {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .pt-5.mt-5, h3.text-center { margin-top: 0!important; padding-top: 0!important; }
+}
+
+input.form-control, select, textarea {
+  &[type="text"], &[type="password"], &[type="url"], &[type="date"], &.form-select, &.form-control:is(textarea) {
+    background: #ddd4df;
+    color: var(--yum);
+    font-family: inherit;
+    box-shadow: inset 0 0 4px 0 #39253d55;
+    &.form-select {
+      --bs-form-select-bg-img-light: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+      background-image: var(--bs-form-select-bg-img-light), linear-gradient(to right, #ddd4df, #ddd4df);
+      background-repeat: no-repeat, repeat;
+      background-position: right, left;
+      background-size: 40px 20px, 100% 100%;
+    }
+    &:focus {
+      box-shadow: none;
+      border-color: #FFF;
+    }
+    &::placeholder {
+      color: #9a74a1;
+    }
+  }
+}
+
+a {
+  color: var(--bs-link-color);
+}
+
+.btn.btn-primary {
+  /*background: #80007b;*/
+  background: #9f0399;
+  border-color: #8887;
+  &:hover {
+    background: #bb01b4;
+    /*background: #9f0399;*/
+  }
+  &:active {
+    /*background: #61105e;*/
+    background: #80007b;
+    border-color: #8887;
+  }
+}
+
+.submit-row #challenge-submit {
+  border-color: #FFF;
+  color: #FFF;
+  &:hover {
+    background: #FFF;
+    color: #000;
+    font-weight: 600;
+  }
+}
+
+#challenge {
+  @media (width > 991px) {
+  & > .notification-row {
+    position: fixed;
+    left: calc(50cqw - 256px);
+    top: calc(100vh - 256px);
+    width: 512px;
+    margin: 0;
+    user-select: none;
+    .alert {
+      transition: translate 1s cubic-bezier(.04,1.15,.55,1.05), opacity 1s cubic-bezier(.04,1.15,.55,1.05);
+      translate: 0 0;
+      opacity: 1;
+      @starting-style {
+        translate: 0 64px;
+        opacity: 0;
+      }
+
+      box-shadow: 0 0 24px 0 #0004;
+      backdrop-filter: blur(4px);
+      &.alert-success {
+        color: #FFF;
+        border-color: #0f5132;
+        background: #39c18388;
+      }
+      &.alert-danger {
+        color: #FFF;
+        border-color: #842029;
+        background: #b5434d88;
+      }
+      &.alert-info {
+        color: #FFF;
+        border-color: #374456;
+        background: #436d9f88;
+      }
+    }
+  }
+  }
+}
+
+  main>div.container:has(>div[x-data="ChallengeBoard"]) {
+    /*display: flex;
+    justify-content: center;*/
+  }
+
+main>.container>div.row.min-vh-25>h3.opacity-50,
+main>.container>h2.text-center
+{ color: #000; }
+
+#challenge-window {
+  width: calc(100cqw - 360px - 32px);
+  height: 80vh;
+  position: absolute;
+  left: calc(360px + 32px);
+
+  border-radius: 12px;
+  background: var(--yum);
+  border: 1px solid #8883;
+  box-shadow: 0 0 16px 0 #0004;
+  @media (width > 991px) {
+    &, .modal-dialog, .modal-content {
+      max-height: 80vh;
+      height: fit-content;
+    }
+  }
+  @media (width <= 991px) {
+    left: 0;
+    width: calc(100vw - 32px);
+    height: calc(100vh - 32px);
+    margin: 16px;
+  }
+
+  overflow: clip;
+
+  .modal.fade .modal-dialog, .modal.show .modal-dialog {
+    transition: translate 2s cubic-bezier(0,1,0,1);
+    translate: 0 0;
+    transform: none;
+    @starting-style { translate: 0 -16px; }
+  }
+
+  .modal-dialog {
+    margin: 0;
+    max-width: unset;
+    height: 100%;
+  }
+
+  .modal-content {
+    background: none;
+    border: none;
+    overflow: auto;
+    height: 100%;
+    .btn-close {
+      filter: var(--bs-btn-close-white-filter);
+      opacity: 0.9;
+      border: 1px solid #0002;
+      &:hover {
+        border-color: #0008;
+      }
+    }
+  }
+
+  .modal-body {
+    &>div:first-child {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+  }
+
+  .nav.nav-tabs {
+    gap: 8px;
+    border: none;
+    .nav-link {
+      color: #FFF;
+    }
+    .nav-link, .nav-link.active {
+      border: none;
+      background: none;
+    }
+    .nav-item:has(.active) {
+      background: #FFF4;
+      border: 1px solid #FFF7;
+    }
+  }
+}
+
+.challenges-row .challenge-button, #challenge-window .nav-item {
+  transition: background-color .1s ease-in-out, border-color .1s ease-in-out;
+  border-radius: 6px;
+  background: #0002;
+  border: 1px solid #00000014;
+  &.challenge-solved {
+    /*background: #448b76;*/
+    background: #40cb6f63;
+    &:hover {
+      background: #54ff8e63;
+      border: 1px solid #00ff9514;
+    }
+  }
+  &:hover {
+    background: #FFF2;
+    border: 1px solid #FFFFFF14;
+  }
+}
+
+pre:has(>code) {
+  background: white;
+  border-radius: 1px;
+}
+
+body:has(>div.modal-backdrop.fade.show) {
+  div[x-data="ChallengeBoard"] {
+    margin: 0;
+    @media (width <= 991px) {
+      transition: none;
+      translate: none;
+      margin: auto;
+    }
+
+    [x-init^="id = "] {
+      transition: box-shadow 3s;
+      box-shadow: none;
+    }
+
+  /* hack to highlight the chall buttons */
+  &:has([x-init^="id = 0;"]) .challenge-button[value="0"],
+  &:has([x-init^="id = 1;"]) .challenge-button[value="1"],
+  &:has([x-init^="id = 2;"]) .challenge-button[value="2"],
+  &:has([x-init^="id = 3;"]) .challenge-button[value="3"],
+  &:has([x-init^="id = 4;"]) .challenge-button[value="4"],
+  &:has([x-init^="id = 5;"]) .challenge-button[value="5"],
+  &:has([x-init^="id = 6;"]) .challenge-button[value="6"],
+  &:has([x-init^="id = 7;"]) .challenge-button[value="7"],
+  &:has([x-init^="id = 8;"]) .challenge-button[value="8"],
+  &:has([x-init^="id = 9;"]) .challenge-button[value="9"],
+  &:has([x-init^="id = 10;"]) .challenge-button[value="10"],
+  &:has([x-init^="id = 11;"]) .challenge-button[value="11"],
+  &:has([x-init^="id = 12;"]) .challenge-button[value="12"],
+  &:has([x-init^="id = 13;"]) .challenge-button[value="13"],
+  &:has([x-init^="id = 14;"]) .challenge-button[value="14"],
+  &:has([x-init^="id = 15;"]) .challenge-button[value="15"],
+  &:has([x-init^="id = 16;"]) .challenge-button[value="16"],
+  &:has([x-init^="id = 17;"]) .challenge-button[value="17"],
+  &:has([x-init^="id = 18;"]) .challenge-button[value="18"],
+  &:has([x-init^="id = 19;"]) .challenge-button[value="19"],
+  &:has([x-init^="id = 20;"]) .challenge-button[value="20"],
+  &:has([x-init^="id = 21;"]) .challenge-button[value="21"],
+  &:has([x-init^="id = 22;"]) .challenge-button[value="22"],
+  &:has([x-init^="id = 23;"]) .challenge-button[value="23"],
+  &:has([x-init^="id = 24;"]) .challenge-button[value="24"],
+  &:has([x-init^="id = 25;"]) .challenge-button[value="25"],
+  &:has([x-init^="id = 26;"]) .challenge-button[value="26"],
+  &:has([x-init^="id = 27;"]) .challenge-button[value="27"],
+  &:has([x-init^="id = 28;"]) .challenge-button[value="28"],
+  &:has([x-init^="id = 29;"]) .challenge-button[value="29"],
+  &:has([x-init^="id = 30;"]) .challenge-button[value="30"],
+  &:has([x-init^="id = 31;"]) .challenge-button[value="31"],
+  &:has([x-init^="id = 32;"]) .challenge-button[value="32"],
+  &:has([x-init^="id = 33;"]) .challenge-button[value="33"],
+  &:has([x-init^="id = 34;"]) .challenge-button[value="34"],
+  &:has([x-init^="id = 35;"]) .challenge-button[value="35"],
+  &:has([x-init^="id = 36;"]) .challenge-button[value="36"],
+  &:has([x-init^="id = 37;"]) .challenge-button[value="37"],
+  &:has([x-init^="id = 38;"]) .challenge-button[value="38"],
+  &:has([x-init^="id = 39;"]) .challenge-button[value="39"],
+  &:has([x-init^="id = 40;"]) .challenge-button[value="40"],
+  &:has([x-init^="id = 41;"]) .challenge-button[value="41"],
+  &:has([x-init^="id = 42;"]) .challenge-button[value="42"],
+  &:has([x-init^="id = 43;"]) .challenge-button[value="43"],
+  &:has([x-init^="id = 44;"]) .challenge-button[value="44"],
+  &:has([x-init^="id = 45;"]) .challenge-button[value="45"],
+  &:has([x-init^="id = 46;"]) .challenge-button[value="46"],
+  &:has([x-init^="id = 47;"]) .challenge-button[value="47"],
+  &:has([x-init^="id = 48;"]) .challenge-button[value="48"],
+  &:has([x-init^="id = 49;"]) .challenge-button[value="49"],
+  &:has([x-init^="id = 50;"]) .challenge-button[value="50"],
+  &:has([x-init^="id = 51;"]) .challenge-button[value="51"],
+  &:has([x-init^="id = 52;"]) .challenge-button[value="52"],
+  &:has([x-init^="id = 53;"]) .challenge-button[value="53"],
+  &:has([x-init^="id = 54;"]) .challenge-button[value="54"],
+  &:has([x-init^="id = 55;"]) .challenge-button[value="55"],
+  &:has([x-init^="id = 56;"]) .challenge-button[value="56"],
+  &:has([x-init^="id = 57;"]) .challenge-button[value="57"],
+  &:has([x-init^="id = 58;"]) .challenge-button[value="58"],
+  &:has([x-init^="id = 59;"]) .challenge-button[value="59"],
+  &:has([x-init^="id = 60;"]) .challenge-button[value="60"],
+  &:has([x-init^="id = 61;"]) .challenge-button[value="61"],
+  &:has([x-init^="id = 62;"]) .challenge-button[value="62"],
+  &:has([x-init^="id = 63;"]) .challenge-button[value="63"],
+  &:has([x-init^="id = 64;"]) .challenge-button[value="64"],
+  &:has([x-init^="id = 65;"]) .challenge-button[value="65"],
+  &:has([x-init^="id = 66;"]) .challenge-button[value="66"],
+  &:has([x-init^="id = 67;"]) .challenge-button[value="67"],
+  &:has([x-init^="id = 68;"]) .challenge-button[value="68"],
+  &:has([x-init^="id = 69;"]) .challenge-button[value="69"],
+  &:has([x-init^="id = 70;"]) .challenge-button[value="70"],
+  &:has([x-init^="id = 71;"]) .challenge-button[value="71"],
+  &:has([x-init^="id = 72;"]) .challenge-button[value="72"],
+  &:has([x-init^="id = 73;"]) .challenge-button[value="73"],
+  &:has([x-init^="id = 74;"]) .challenge-button[value="74"],
+  &:has([x-init^="id = 75;"]) .challenge-button[value="75"],
+  &:has([x-init^="id = 76;"]) .challenge-button[value="76"],
+  &:has([x-init^="id = 77;"]) .challenge-button[value="77"],
+  &:has([x-init^="id = 78;"]) .challenge-button[value="78"],
+  &:has([x-init^="id = 79;"]) .challenge-button[value="79"],
+  &:has([x-init^="id = 80;"]) .challenge-button[value="80"],
+  &:has([x-init^="id = 81;"]) .challenge-button[value="81"],
+  &:has([x-init^="id = 82;"]) .challenge-button[value="82"],
+  &:has([x-init^="id = 83;"]) .challenge-button[value="83"],
+  &:has([x-init^="id = 84;"]) .challenge-button[value="84"],
+  &:has([x-init^="id = 85;"]) .challenge-button[value="85"],
+  &:has([x-init^="id = 86;"]) .challenge-button[value="86"],
+  &:has([x-init^="id = 87;"]) .challenge-button[value="87"],
+  &:has([x-init^="id = 88;"]) .challenge-button[value="88"],
+  &:has([x-init^="id = 89;"]) .challenge-button[value="89"],
+  &:has([x-init^="id = 90;"]) .challenge-button[value="90"],
+  &:has([x-init^="id = 91;"]) .challenge-button[value="91"],
+  &:has([x-init^="id = 92;"]) .challenge-button[value="92"],
+  &:has([x-init^="id = 93;"]) .challenge-button[value="93"],
+  &:has([x-init^="id = 94;"]) .challenge-button[value="94"],
+  &:has([x-init^="id = 95;"]) .challenge-button[value="95"],
+  &:has([x-init^="id = 96;"]) .challenge-button[value="96"],
+  &:has([x-init^="id = 97;"]) .challenge-button[value="97"],
+  &:has([x-init^="id = 98;"]) .challenge-button[value="98"],
+  &:has([x-init^="id = 99;"]) .challenge-button[value="99"]
+    {
+      background: #FFF4!important;
+      border: 1px solid #FFF7;
+      &.challenge-solved {
+        /*background: #448b76!important;*/
+        background: #54ff8e75!important;
+        border: 1px solid #cbffc85c;
+      }
+      & .challenge-inner {
+        font-weight: 450;
+      }
+    }
+  &:has(.challenge-solved[value="0"]) [x-init^="id = 0;"],
+  &:has(.challenge-solved[value="1"]) [x-init^="id = 1;"],
+  &:has(.challenge-solved[value="2"]) [x-init^="id = 2;"],
+  &:has(.challenge-solved[value="3"]) [x-init^="id = 3;"],
+  &:has(.challenge-solved[value="4"]) [x-init^="id = 4;"],
+  &:has(.challenge-solved[value="5"]) [x-init^="id = 5;"],
+  &:has(.challenge-solved[value="6"]) [x-init^="id = 6;"],
+  &:has(.challenge-solved[value="7"]) [x-init^="id = 7;"],
+  &:has(.challenge-solved[value="8"]) [x-init^="id = 8;"],
+  &:has(.challenge-solved[value="9"]) [x-init^="id = 9;"],
+  &:has(.challenge-solved[value="10"]) [x-init^="id = 10;"],
+  &:has(.challenge-solved[value="11"]) [x-init^="id = 11;"],
+  &:has(.challenge-solved[value="12"]) [x-init^="id = 12;"],
+  &:has(.challenge-solved[value="13"]) [x-init^="id = 13;"],
+  &:has(.challenge-solved[value="14"]) [x-init^="id = 14;"],
+  &:has(.challenge-solved[value="15"]) [x-init^="id = 15;"],
+  &:has(.challenge-solved[value="16"]) [x-init^="id = 16;"],
+  &:has(.challenge-solved[value="17"]) [x-init^="id = 17;"],
+  &:has(.challenge-solved[value="18"]) [x-init^="id = 18;"],
+  &:has(.challenge-solved[value="19"]) [x-init^="id = 19;"],
+  &:has(.challenge-solved[value="20"]) [x-init^="id = 20;"],
+  &:has(.challenge-solved[value="21"]) [x-init^="id = 21;"],
+  &:has(.challenge-solved[value="22"]) [x-init^="id = 22;"],
+  &:has(.challenge-solved[value="23"]) [x-init^="id = 23;"],
+  &:has(.challenge-solved[value="24"]) [x-init^="id = 24;"],
+  &:has(.challenge-solved[value="25"]) [x-init^="id = 25;"],
+  &:has(.challenge-solved[value="26"]) [x-init^="id = 26;"],
+  &:has(.challenge-solved[value="27"]) [x-init^="id = 27;"],
+  &:has(.challenge-solved[value="28"]) [x-init^="id = 28;"],
+  &:has(.challenge-solved[value="29"]) [x-init^="id = 29;"],
+  &:has(.challenge-solved[value="30"]) [x-init^="id = 30;"],
+  &:has(.challenge-solved[value="31"]) [x-init^="id = 31;"],
+  &:has(.challenge-solved[value="32"]) [x-init^="id = 32;"],
+  &:has(.challenge-solved[value="33"]) [x-init^="id = 33;"],
+  &:has(.challenge-solved[value="34"]) [x-init^="id = 34;"],
+  &:has(.challenge-solved[value="35"]) [x-init^="id = 35;"],
+  &:has(.challenge-solved[value="36"]) [x-init^="id = 36;"],
+  &:has(.challenge-solved[value="37"]) [x-init^="id = 37;"],
+  &:has(.challenge-solved[value="38"]) [x-init^="id = 38;"],
+  &:has(.challenge-solved[value="39"]) [x-init^="id = 39;"],
+  &:has(.challenge-solved[value="40"]) [x-init^="id = 40;"],
+  &:has(.challenge-solved[value="41"]) [x-init^="id = 41;"],
+  &:has(.challenge-solved[value="42"]) [x-init^="id = 42;"],
+  &:has(.challenge-solved[value="43"]) [x-init^="id = 43;"],
+  &:has(.challenge-solved[value="44"]) [x-init^="id = 44;"],
+  &:has(.challenge-solved[value="45"]) [x-init^="id = 45;"],
+  &:has(.challenge-solved[value="46"]) [x-init^="id = 46;"],
+  &:has(.challenge-solved[value="47"]) [x-init^="id = 47;"],
+  &:has(.challenge-solved[value="48"]) [x-init^="id = 48;"],
+  &:has(.challenge-solved[value="49"]) [x-init^="id = 49;"],
+  &:has(.challenge-solved[value="50"]) [x-init^="id = 50;"],
+  &:has(.challenge-solved[value="51"]) [x-init^="id = 51;"],
+  &:has(.challenge-solved[value="52"]) [x-init^="id = 52;"],
+  &:has(.challenge-solved[value="53"]) [x-init^="id = 53;"],
+  &:has(.challenge-solved[value="54"]) [x-init^="id = 54;"],
+  &:has(.challenge-solved[value="55"]) [x-init^="id = 55;"],
+  &:has(.challenge-solved[value="56"]) [x-init^="id = 56;"],
+  &:has(.challenge-solved[value="57"]) [x-init^="id = 57;"],
+  &:has(.challenge-solved[value="58"]) [x-init^="id = 58;"],
+  &:has(.challenge-solved[value="59"]) [x-init^="id = 59;"],
+  &:has(.challenge-solved[value="60"]) [x-init^="id = 60;"],
+  &:has(.challenge-solved[value="61"]) [x-init^="id = 61;"],
+  &:has(.challenge-solved[value="62"]) [x-init^="id = 62;"],
+  &:has(.challenge-solved[value="63"]) [x-init^="id = 63;"],
+  &:has(.challenge-solved[value="64"]) [x-init^="id = 64;"],
+  &:has(.challenge-solved[value="65"]) [x-init^="id = 65;"],
+  &:has(.challenge-solved[value="66"]) [x-init^="id = 66;"],
+  &:has(.challenge-solved[value="67"]) [x-init^="id = 67;"],
+  &:has(.challenge-solved[value="68"]) [x-init^="id = 68;"],
+  &:has(.challenge-solved[value="69"]) [x-init^="id = 69;"],
+  &:has(.challenge-solved[value="70"]) [x-init^="id = 70;"],
+  &:has(.challenge-solved[value="71"]) [x-init^="id = 71;"],
+  &:has(.challenge-solved[value="72"]) [x-init^="id = 72;"],
+  &:has(.challenge-solved[value="73"]) [x-init^="id = 73;"],
+  &:has(.challenge-solved[value="74"]) [x-init^="id = 74;"],
+  &:has(.challenge-solved[value="75"]) [x-init^="id = 75;"],
+  &:has(.challenge-solved[value="76"]) [x-init^="id = 76;"],
+  &:has(.challenge-solved[value="77"]) [x-init^="id = 77;"],
+  &:has(.challenge-solved[value="78"]) [x-init^="id = 78;"],
+  &:has(.challenge-solved[value="79"]) [x-init^="id = 79;"],
+  &:has(.challenge-solved[value="80"]) [x-init^="id = 80;"],
+  &:has(.challenge-solved[value="81"]) [x-init^="id = 81;"],
+  &:has(.challenge-solved[value="82"]) [x-init^="id = 82;"],
+  &:has(.challenge-solved[value="83"]) [x-init^="id = 83;"],
+  &:has(.challenge-solved[value="84"]) [x-init^="id = 84;"],
+  &:has(.challenge-solved[value="85"]) [x-init^="id = 85;"],
+  &:has(.challenge-solved[value="86"]) [x-init^="id = 86;"],
+  &:has(.challenge-solved[value="87"]) [x-init^="id = 87;"],
+  &:has(.challenge-solved[value="88"]) [x-init^="id = 88;"],
+  &:has(.challenge-solved[value="89"]) [x-init^="id = 89;"],
+  &:has(.challenge-solved[value="90"]) [x-init^="id = 90;"],
+  &:has(.challenge-solved[value="91"]) [x-init^="id = 91;"],
+  &:has(.challenge-solved[value="92"]) [x-init^="id = 92;"],
+  &:has(.challenge-solved[value="93"]) [x-init^="id = 93;"],
+  &:has(.challenge-solved[value="94"]) [x-init^="id = 94;"],
+  &:has(.challenge-solved[value="95"]) [x-init^="id = 95;"],
+  &:has(.challenge-solved[value="96"]) [x-init^="id = 96;"],
+  &:has(.challenge-solved[value="97"]) [x-init^="id = 97;"],
+  &:has(.challenge-solved[value="98"]) [x-init^="id = 98;"],
+  &:has(.challenge-solved[value="99"]) [x-init^="id = 99;"]
+    {
+      box-shadow: inset 0 0 256px #54ff9758;
+      #challenge-submit {
+        font-size: 0px;
+        background: #54ff8e75;
+        border-color: #cbffc85c;
+        &:hover {
+          background: #54ff8e96;
+          color: #FFF;
+        }
+        &::after {
+          font-size: 16px;
+          content: "Solved";
+        }
+      }
+    }
+
+  }
+}
+
+div[x-data="ChallengeBoard"] {
+
+
+  width: fit-content;
+  border-radius: 12px;
+  background: var(--yum);
+  border: 1px solid #8883;
+  box-shadow: 0 0 16px 0 #0004;
+
+  .category-header {
+    margin: 0!important;
+    h3 {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #FFFE;
+    }
+  }
+
+  margin: 0 calc(50% - 180px);
+  transition: translate 2s cubic-bezier(0,1,0,1), margin 2s cubic-bezier(0,1,0,1);
+  translate: 0 0;
+  &:not(:has(div[x-show="loaded"]>div)) {
+    opacity: 0.5;
+    translate: 0 -12px;
+    margin: auto;
+  }
+
+  &>div[x-show="!loaded"] {
+    div.min-vh-50 {
+
+      min-height: 20vh!important;
+      min-width: 20vh!important;
+
+/*
+      min-height: 320px!important;
+      min-width: 320px!important;
+      */
+      .fa-spin.spinner {
+        color: #FFF;
+        opacity: 1;
+      }
+    }
+  }
+
+  &>div[x-show="loaded"] {
+    transition: translate 2s cubic-bezier(0,1,0,1);
+    translate: 0 0;
+    @starting-style { translate: 0 -16px; }
+
+    padding: 32px;
+    >div.pt-5 { padding: 0!important; &:not(:last-child) { margin-bottom: 12px; } }
+
+    .challenges-row {
+      flex-direction: column;
+      gap: 8px;
+      & > div {
+        margin: 0!important;
+        min-width: fit-content;
+        width: 320px;
+        .challenge-inner {
+          font-weight: 400;
+          transition: font-weight 1s;
+          display: flex;
+          justify-content: space-between;
+          margin: 0!important;
+          p {
+            margin-bottom: 0;
+          }
+          span {
+            scale: 0.85;
+          }
+        }
+      }
+      .challenge-button {
+        box-shadow: none;
+        &::before {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+a.btn-file {
+  background: #B161AC;
+  border-color: #df7cd970;
+  &:hover {
+    background: #cf72c9;
+    border-color: #e9d8e85c;
+  }
+  &:active, &:first-child:active {
+    background: #955091;
+    border-color: #df7cd970;
+  }
+  display: inline-flex !important;
+  flex-direction: column;
+  justify-content: center;
+  i {
+    font-size: 32px;
+  }
+  i::before { content: "\f15b"; }
+  &:is([title$="zip"], [title$="rar"], [title$="gz"], [title$="tar"]) > i::before { content: "\f1c6"; }
+  &:is([title$="png"], [title$="jpg"], [title$="bmp"], [title$="gif"]) > i::before { content: "\f03e"; }
+  &:is([title$="php"], [title$="py"], [title$="js"], [title$=".c"]) > i::before { content: "\f1c9"; }
+  &:is([title$="pdf"]) > i::before { content: "\f1c1"; }
+  &:is([title$="txt"]) > i::before { content: "\f15c"; }
+}
+
+/* 🦊 easter egg */
+body:has(>main>.jumbotron>.container>div>a[href*="lyra.horse"]) {
+  &, main {
+    --primary-font: "Bodoni MT", "Times New Roman", serif;
+    --bs-dark: #8CFFDB;
+    --yum: #04593b;
+    --bs-link-color: #59caff;
+    --bs-link-hover-color: #69daff;
+    background: var(--bs-dark);
+  }
+  a[href*="lyra.horse"] i::before { content: "lyra.horse"; font-family: var(--primary-font); text-decoration: underline; color: #0078B1; }
+  .jumbotron .container {
+    font-family: var(--primary-font);
+    h1 {
+      text-transform: lowercase;
+      font-weight: 400;
+    }
+  }
+}
